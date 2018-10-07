@@ -4,8 +4,9 @@ namespace Modules\Recipe\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Recipe\Entities\Complexity;
 
-class RecipeDatabaseSeeder extends Seeder
+class ComplexityTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +17,8 @@ class RecipeDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-//        $this->call(TimesTableSeeder::class);
-//        $this->call(PersonsTableSeeder::class);
-//        $this->call(ComplexityTableSeeder::class);
-        $this->call(RecipesTableSeeder::class);
+        Complexity::create([
+            'complexity_level' => str_random(8)
+        ]);
     }
 }

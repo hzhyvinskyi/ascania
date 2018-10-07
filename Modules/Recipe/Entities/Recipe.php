@@ -31,13 +31,13 @@ class Recipe extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany('Modules\Recipe\Entities\Category');
+        return $this->belongsToMany('Modules\Recipe\Entities\Category', 'recipe__category_recipe');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function time()
+    public function times()
     {
         return $this->belongsTo('Modules\Recipe\Entities\Time');
     }
@@ -45,7 +45,7 @@ class Recipe extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function person()
+    public function persons()
     {
         return $this->belongsTo('Modules\Recipe\Entities\Person');
     }

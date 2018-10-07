@@ -4,8 +4,9 @@ namespace Modules\Recipe\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Recipe\Entities\Time;
 
-class RecipeDatabaseSeeder extends Seeder
+class TimesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +17,8 @@ class RecipeDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-//        $this->call(TimesTableSeeder::class);
-//        $this->call(PersonsTableSeeder::class);
-//        $this->call(ComplexityTableSeeder::class);
-        $this->call(RecipesTableSeeder::class);
+        Time::create([
+            'amount_of_time' => rand(0, 60)
+        ]);
     }
 }

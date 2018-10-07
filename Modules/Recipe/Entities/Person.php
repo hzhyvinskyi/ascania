@@ -12,7 +12,7 @@ class Person extends Model
     /**
      * @var string
      */
-    protected $table = 'recipe__people';
+    protected $table = 'recipe__persons';
 
     /**
      * @var array

@@ -20,12 +20,14 @@
         <div class="recipe-details item-details">
             <div class="container">
                 <div class="item-details__container">
-                    <div class="item-details__left background" style='background-image: url(/img/recipe_details/item.png);'> </div>
+                    <div class="item-details__left background" style='background-image: url({{ $recipe->image }});'> </div>
                     <div class="item-details__right">
                         <div class="item-details__info">
                             <div class="item-details__info__left">
                                 <div class="item-details__info__left__row">
-                                    <span class="item-label">ПЕРВЫЕ БЛЮДА</span>
+                                    @foreach ($recipe->categories as $category)
+                                        <span class="item-label">{{ $category->name }}</span>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="item-details__info__right">
@@ -44,24 +46,24 @@
                             </div>
                         </div>
                         <div class="item-details__description">
-                            <h2 class="item-details__description__name"> Крем-суп в хлебном горшке </h2>
+                            <h2 class="item-details__description__name">{{ $recipe->name }}</h2>
                             <div class="item-details__description__info">
                                 <div class="item-details__description__info__item">
                                     <i class="icon-clock"></i>
-                                    <span>30 мин</span>
+                                    <span>{{ $recipe->times->amount_of_time }} мин</span>
                                 </div>
                                 <div class="item-details__description__info__item">
                                     <i class="icon-people"></i>
-                                    <span>3-4 персоны</span>
+                                    <span>{{ $recipe->persons->amount_of_persons }}</span>
                                 </div>
                                 <div class="item-details__description__info__item">
                                     <i class="icon-people icon-cup"></i>
-                                    <span>Легкий в приготовлении</span>
+                                    <span>{{ $recipe->complexity->complexity_level }} в приготовлении</span>
                                 </div>
                             </div>
                             <p> Суп в хлебном "горшочке" не часто увидишь в меню ресторана. А зря! Ведь рецепт чешского супа "Полевка" очень прост. Попробуйте приготовить суп в хлебе "Полевка" в домашних услових. </p>
                             <p> Лук, морковь и грибы обжарить на растительном масле. Влить вино и выпарить его наполовину. Затем нужно добавить воду и картофель. Когда блюдо будет готово, взбить блендером, посолить и поперчить. </p>
-                            <p>
+                            <p>{{ $recipe->text }}</p>
                         </div>
                     </div>
                 </div>

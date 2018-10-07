@@ -4,8 +4,9 @@ namespace Modules\Recipe\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Recipe\Entities\Person;
 
-class RecipeDatabaseSeeder extends Seeder
+class PersonsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +17,8 @@ class RecipeDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-//        $this->call(TimesTableSeeder::class);
-//        $this->call(PersonsTableSeeder::class);
-//        $this->call(ComplexityTableSeeder::class);
-        $this->call(RecipesTableSeeder::class);
+        Person::create([
+            'amount_of_persons' => rand(0, 10)
+        ]);
     }
 }

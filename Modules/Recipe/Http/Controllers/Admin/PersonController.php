@@ -31,9 +31,9 @@ class PersonController extends AdminBaseController
      */
     public function index()
     {
-        $people = $this->person->all();
+        $persons = $this->person->all();
 
-        return view('recipe::admin.people.index', compact('people'));
+        return view('recipe::admin.persons.index', compact('persons'));
     }
 
     /**
@@ -43,7 +43,7 @@ class PersonController extends AdminBaseController
      */
     public function create()
     {
-        return view('recipe::admin.people.create');
+        return view('recipe::admin.persons.create');
     }
 
     /**
@@ -56,8 +56,8 @@ class PersonController extends AdminBaseController
     {
         $this->person->create($request->all());
 
-        return redirect()->route('admin.recipe.person.index')
-            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('recipe::people.title.people')]));
+        return redirect()->route('admin.recipe.persons.index')
+            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('recipe::persons.title.person')]));
     }
 
     /**
@@ -68,7 +68,7 @@ class PersonController extends AdminBaseController
      */
     public function edit(Person $person)
     {
-        return view('recipe::admin.people.edit', compact('person'));
+        return view('recipe::admin.persons.edit', compact('person'));
     }
 
     /**
@@ -82,8 +82,8 @@ class PersonController extends AdminBaseController
     {
         $this->person->update($person, $request->all());
 
-        return redirect()->route('admin.recipe.person.index')
-            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('recipe::people.title.people')]));
+        return redirect()->route('admin.recipe.persons.index')
+            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('recipe::persons.title.person')]));
     }
 
     /**
@@ -96,7 +96,7 @@ class PersonController extends AdminBaseController
     {
         $this->person->destroy($person);
 
-        return redirect()->route('admin.recipe.person.index')
-            ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('recipe::people.title.people')]));
+        return redirect()->route('admin.recipe.persons.index')
+            ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('recipe::persons.title.person')]));
     }
 }

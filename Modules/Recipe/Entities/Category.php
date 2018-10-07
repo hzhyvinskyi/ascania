@@ -31,6 +31,6 @@ class Category extends Model
      */
     public function posts()
     {
-        return $this->belongsToMany('Modules\Recipe\Entities\Recipe');
+        return $this->belongsToMany('Modules\Recipe\Entities\Recipe', 'recipe__category_recipe');
     }
 }

@@ -2,17 +2,17 @@
 
 @section('content-header')
     <h1>
-        {{ trans('recipe::people.title.edit person') }}
+        {{ trans('recipe::people.title.create person') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
         <li><a href="{{ route('admin.recipe.person.index') }}">{{ trans('recipe::people.title.people') }}</a></li>
-        <li class="active">{{ trans('recipe::people.title.edit person') }}</li>
+        <li class="active">{{ trans('recipe::people.title.create person') }}</li>
     </ol>
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.recipe.person.update', $person->id], 'method' => 'put']) !!}
+    {!! Form::open(['route' => ['admin.recipe.person.store'], 'method' => 'post']) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -22,12 +22,12 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('recipe::admin.people.partials.edit-fields', ['lang' => $locale])
+                            @include('recipe::admin.persons.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
+                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.recipe.person.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>
                 </div>
