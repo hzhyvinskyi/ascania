@@ -31,9 +31,9 @@ class RecipeController extends AdminBaseController
      */
     public function index()
     {
-        //$recipes = $this->recipe->all();
+        $recipes = $this->recipe->all();
 
-        return view('recipe::admin.recipes.index', compact(''));
+        return view('recipe::admin.recipes.index', compact('recipes'));
     }
 
     /**

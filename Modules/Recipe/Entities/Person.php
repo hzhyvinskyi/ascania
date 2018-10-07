@@ -9,7 +9,28 @@ class Person extends Model
 {
     use Translatable;
 
+    /**
+     * @var string
+     */
     protected $table = 'recipe__people';
+
+    /**
+     * @var array
+     */
     public $translatedAttributes = [];
-    protected $fillable = [];
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'amount_of_persons'
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function recipes()
+    {
+        return $this->hasMany('Modules\Recipe\Entities\Recipe');
+    }
 }

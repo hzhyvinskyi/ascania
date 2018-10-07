@@ -31,9 +31,9 @@ class CategoryController extends AdminBaseController
      */
     public function index()
     {
-        //$categories = $this->category->all();
+        $categories = $this->category->all();
 
-        return view('recipe::admin.categories.index', compact(''));
+        return view('recipe::admin.categories.index', compact('categories'));
     }
 
     /**

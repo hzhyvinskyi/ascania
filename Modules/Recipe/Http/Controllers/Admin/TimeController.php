@@ -31,9 +31,9 @@ class TimeController extends AdminBaseController
      */
     public function index()
     {
-        //$times = $this->time->all();
+        $times = $this->time->all();
 
-        return view('recipe::admin.times.index', compact(''));
+        return view('recipe::admin.times.index', compact('times'));
     }
 
     /**

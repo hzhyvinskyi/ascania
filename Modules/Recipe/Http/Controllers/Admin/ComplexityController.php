@@ -31,9 +31,9 @@ class ComplexityController extends AdminBaseController
      */
     public function index()
     {
-        //$complexities = $this->complexity->all();
+        $complexities = $this->complexity->all();
 
-        return view('recipe::admin.complexities.index', compact(''));
+        return view('recipe::admin.complexities.index', compact('complexities'));
     }
 
     /**

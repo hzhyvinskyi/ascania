@@ -31,9 +31,9 @@ class PersonController extends AdminBaseController
      */
     public function index()
     {
-        //$people = $this->person->all();
+        $people = $this->person->all();
 
-        return view('recipe::admin.people.index', compact(''));
+        return view('recipe::admin.people.index', compact('people'));
     }
 
     /**
