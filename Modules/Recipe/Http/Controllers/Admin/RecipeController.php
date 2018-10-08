@@ -2,8 +2,8 @@
 
 namespace Modules\Recipe\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Modules\Recipe\Entities\Category;
 use Modules\Recipe\Entities\Complexity;
 use Modules\Recipe\Entities\Person;
@@ -11,7 +11,6 @@ use Modules\Recipe\Entities\Recipe;
 use Modules\Recipe\Entities\Time;
 use Modules\Recipe\Http\Requests\CreateRecipeRequest;
 use Modules\Recipe\Http\Requests\UpdateRecipeRequest;
-use Modules\Recipe\Repositories\CategoryRepository;
 use Modules\Recipe\Repositories\RecipeRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
@@ -44,6 +43,7 @@ class RecipeController extends AdminBaseController
 
     /**
      * RecipeController constructor.
+     *
      * @param RecipeRepository $recipe
      * @param Category $categories
      * @param Time $times
@@ -64,7 +64,7 @@ class RecipeController extends AdminBaseController
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function index()
     {
@@ -76,7 +76,7 @@ class RecipeController extends AdminBaseController
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function create()
     {
@@ -96,16 +96,24 @@ class RecipeController extends AdminBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CreateRecipeRequest $request
-     * @return Response
+     * @param CreateRecipeRequest $request
+     * @return mixed
      */
     public function store(CreateRecipeRequest $request)
     {
-        $recipe = $this->recipe->create($request->all());
-
-        foreach ($request->category_id as $category_id) {
-            $recipe->categories()->attach($category_id);
-        }
+        $file = $request->image;
+        $imagePath = $this->getSavedFilePath($file);
+        $data = [
+            'name' => $request->name,
+            'image' => $imagePath,
+            'times_id' => $request->times_id,
+            'persons_id' => $request->persons_id,
+            'complexity_id' => $request->complexity_id,
+            'text' => $request->text,
+            'intro' => $request->intro
+        ];
+        $recipe = $this->recipe->create($data);
+        $this->attach($recipe);
 
         return redirect()->route('admin.recipe.recipe.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('recipe::recipes.title.recipes')]));
@@ -114,8 +122,8 @@ class RecipeController extends AdminBaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Recipe $recipe
-     * @return Response
+     * @param Recipe $recipe
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function edit(Recipe $recipe)
     {
@@ -138,13 +146,25 @@ class RecipeController extends AdminBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Recipe $recipe
-     * @param  UpdateRecipeRequest $request
-     * @return Response
+     * @param Recipe $recipe
+     * @param UpdateRecipeRequest $request
+     * @return mixed
      */
     public function update(Recipe $recipe, UpdateRecipeRequest $request)
     {
-        $this->recipe->update($recipe, $request->all());
+        Storage::delete($recipe->image);
+        $file = $request->image;
+        $imagePath = $this->getSavedFilePath($file);
+        $data = [
+            'name' => $request->name,
+            'image' => $imagePath,
+            'times_id' => $request->times_id,
+            'persons_id' => $request->persons_id,
+            'complexity_id' => $request->complexity_id,
+            'text' => $request->text,
+            'intro' => $request->intro
+        ];
+        $this->recipe->update($recipe, $data);
         $this->detach($recipe);
         $this->attach($recipe);
 
@@ -155,11 +175,12 @@ class RecipeController extends AdminBaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Recipe $recipe
-     * @return Response
+     * @param Recipe $recipe
+     * @return mixed
      */
     public function destroy(Recipe $recipe)
     {
+        Storage::delete($recipe->image);
         $this->detach($recipe);
         $this->recipe->destroy($recipe);
 
@@ -167,6 +188,11 @@ class RecipeController extends AdminBaseController
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('recipe::recipes.title.recipes')]));
     }
 
+    /**
+     * Saves related data into the pivot table
+     *
+     * @param Recipe $recipe
+     */
     private function attach(Recipe $recipe)
     {
         foreach ($recipe->categories as $category) {
@@ -174,10 +200,26 @@ class RecipeController extends AdminBaseController
         }
     }
 
+    /**
+     * Removes related data from the pivot table
+     *
+     * @param Recipe $recipe
+     */
     private function detach(Recipe $recipe)
     {
         foreach ($recipe->categories as $category) {
             $recipe->categories()->detach($category->id);
         }
+    }
+
+    /**
+     * Saves uploaded file and returns it's path
+     *
+     * @param UploadedFile $file
+     * @return string
+     */
+    private function getSavedFilePath(UploadedFile $file)
+    {
+        return '/' . $file->store('uploads/' . strtolower(str_random(2)) . '/' . strtolower(str_random(2)));
     }
 }

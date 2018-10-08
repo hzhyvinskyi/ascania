@@ -37,7 +37,7 @@ return [
     'disks' => [
         'local' => [
             'driver' => 'local',
-            'root'   => base_path(),
+            'root'   => public_path(),
             'permissions' => [
                 'file' => [
                     'public' => 0777,
