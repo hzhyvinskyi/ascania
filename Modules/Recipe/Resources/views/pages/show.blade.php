@@ -178,166 +178,30 @@
                     </div>
                 </div>
                 <div class="recipe-slider__body slider__body">
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
+                    @foreach ($recipes as $recipe)
+                        <div class="recipe-item">
+                            <div class="recipe-item__container" style="">
+                                <div class="recipe-item__img-box">
+                                    <div style="background-image: url({{ $recipe->image }})"></div>
+                                </div>
+                                <div class="recipe-item__overlay"></div>
+                                <div class="recipe-item__content">
+                                    @foreach ($recipe->categories as $category)
+                                        <a href="#" class="recipe-item__label">{{ $category->name }}</a>
+                                    @endforeach
+                                    <a href="#" class="recipe-item__name">{{ $recipe->name }}</a>
+                                    <div class="recipe-item__info">
+                                        <div class="recipe-item__info__item">
+                                            <i class="recipe-item__info__item__icon icon-timer"></i> {{ $recipe->times->amount_of_time }} мин</div>
+                                        <div class="recipe-item__info__item">
+                                            <i class="recipe-item__info__item__icon icon-people"></i> {{ $recipe->persons->amount_of_persons }}</div>
+                                        <div class="recipe-item__info__item">
+                                            <i class="recipe-item__info__item__icon icon-people"></i> {{ $recipe->complexity->complexity_level }} в приготовлении</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -349,46 +213,30 @@
                     </div>
                 </div>
                 <div class="recipe-slider__body slider__body">
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
+                    @foreach ($lastRecipes as $recipe)
+                        <div class="recipe-item">
+                            <div class="recipe-item__container" style="">
+                                <div class="recipe-item__img-box">
+                                    <div style="background-image: url({{ $recipe->image }})"></div>
+                                </div>
+                                <div class="recipe-item__overlay"></div>
+                                <div class="recipe-item__content">
+                                    @foreach ($recipe->categories as $category)
+                                        <a href="#" class="recipe-item__label">{{ $category->name }}</a>
+                                    @endforeach
+                                    <a href="#" class="recipe-item__name">{{ $recipe->name }}</a>
+                                    <div class="recipe-item__info">
+                                        <div class="recipe-item__info__item">
+                                            <i class="recipe-item__info__item__icon icon-timer"></i> {{ $recipe->times->amount_of_time }} мин</div>
+                                        <div class="recipe-item__info__item">
+                                            <i class="recipe-item__info__item__icon icon-people"></i> {{ $recipe->persons->amount_of_persons }}</div>
+                                        <div class="recipe-item__info__item">
+                                            <i class="recipe-item__info__item__icon icon-people"></i> {{ $recipe->complexity->complexity_level }} в приготовлении</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="recipe-item">
-                        <div class="recipe-item__container" style="">
-                            <div class="recipe-item__img-box">
-                                <div style="background-image: url(/img/product_details/recipe1.png)"></div>
-                            </div>
-                            <div class="recipe-item__overlay"></div>
-                            <div class="recipe-item__content">
-                                <a href="#" class="recipe-item__label">ПРЕСС-РЕЛИЗЫ</a>
-                                <a href="#" class="recipe-item__name">Крем-суп в хлебном горшке</a>
-                                <div class="recipe-item__info">
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-timer"></i> 30 мин</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> 3-4 персоны</div>
-                                    <div class="recipe-item__info__item">
-                                        <i class="recipe-item__info__item__icon icon-people"></i> Легкий в приготовлении</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

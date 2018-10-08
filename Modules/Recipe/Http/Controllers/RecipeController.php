@@ -77,7 +77,13 @@ class RecipeController extends Controller
     public function show($id)
     {
         $recipe = $this->recipe->find($id);
+        $recipes = $this->recipe->all();
+        $lastRecipes = $this->recipe->orderBy('id', 'desc')->limit(3)->get();
 
-        return view('recipe::pages.show', compact('recipe'));
+        return view('recipe::pages.show', [
+            'recipe' => $recipe,
+            'recipes' => $recipes,
+            'lastRecipes' => $lastRecipes
+        ]);
     }
 }
