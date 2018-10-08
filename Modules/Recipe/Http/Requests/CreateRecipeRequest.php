@@ -8,7 +8,16 @@ class CreateRecipeRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'name' => 'bail|required|unique:recipe__recipes|min:3',
+            'image' => 'bail|required|image',
+            'category_id' => 'required',
+            'times_id' => 'required|integer',
+            'persons_id' => 'required|integer',
+            'complexity_id' => 'required|integer',
+            'text' => 'nullable|string|min:20',
+            'intro' => 'nullable|string|min:10'
+        ];
     }
 
     public function translationRules()

@@ -113,7 +113,7 @@ class RecipeController extends AdminBaseController
             'intro' => $request->intro
         ];
         $recipe = $this->recipe->create($data);
-        $this->attach($recipe);
+        $this->attach($recipe, $request);
 
         return redirect()->route('admin.recipe.recipe.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('recipe::recipes.title.recipes')]));
@@ -152,9 +152,15 @@ class RecipeController extends AdminBaseController
      */
     public function update(Recipe $recipe, UpdateRecipeRequest $request)
     {
-        Storage::delete($recipe->image);
         $file = $request->image;
-        $imagePath = $this->getSavedFilePath($file);
+
+        if ($file) {
+            Storage::delete($recipe->image);
+            $imagePath = $this->getSavedFilePath($file);
+        } else {
+            $imagePath = $recipe->image;
+        }
+
         $data = [
             'name' => $request->name,
             'image' => $imagePath,
@@ -166,7 +172,7 @@ class RecipeController extends AdminBaseController
         ];
         $this->recipe->update($recipe, $data);
         $this->detach($recipe);
-        $this->attach($recipe);
+        $this->attach($recipe, $request);
 
         return redirect()->route('admin.recipe.recipe.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('recipe::recipes.title.recipes')]));
@@ -193,10 +199,10 @@ class RecipeController extends AdminBaseController
      *
      * @param Recipe $recipe
      */
-    private function attach(Recipe $recipe)
+    private function attach(Recipe $recipe, $request)
     {
-        foreach ($recipe->categories as $category) {
-            $recipe->categories()->attach($category->id);
+        foreach ($request->category_id as $category) {
+            $recipe->categories()->attach($category);
         }
     }
 
@@ -208,7 +214,7 @@ class RecipeController extends AdminBaseController
     private function detach(Recipe $recipe)
     {
         foreach ($recipe->categories as $category) {
-            $recipe->categories()->detach($category->id);
+            $recipe->categories()->detach($category);
         }
     }
 

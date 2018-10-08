@@ -12,7 +12,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.recipe.recipe.store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['admin.recipe.recipe.store'], 'method' => 'post', 'files' => true]) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
