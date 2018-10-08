@@ -14,8 +14,12 @@ return [
         'create category' => 'Create a category',
     ],
     'table' => [
+        'name' => 'Name',
+        'created at' => 'Created at',
+        'updated at' => 'Updated at'
     ],
     'form' => [
+        'name' => 'Name'
     ],
     'messages' => [
     ],

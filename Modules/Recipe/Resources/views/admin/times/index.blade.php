@@ -29,7 +29,10 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('recipe::times.table.amount of time') }}</th>
+                                <th>{{ trans('recipe::times.table.created at') }}</th>
+                                <th>{{ trans('recipe::times.table.updated at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -39,7 +42,22 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.recipe.time.edit', [$time->id]) }}">
+                                        {{ $time->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.time.edit', [$time->id]) }}">
+                                        {{ $time->amount_of_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.time.edit', [$time->id]) }}">
                                         {{ $time->created_at }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.time.edit', [$time->id]) }}">
+                                        {{ $time->updated_at }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,7 +72,10 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('recipe::times.table.amount of time') }}</th>
+                                <th>{{ trans('recipe::times.table.created at') }}</th>
+                                <th>{{ trans('recipe::times.table.updated at') }}</th>
                                 <th>{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </tfoot>

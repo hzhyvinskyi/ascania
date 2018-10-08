@@ -4,9 +4,14 @@ namespace Modules\Recipe\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Recipe\Entities\Category;
+use Modules\Recipe\Entities\Complexity;
+use Modules\Recipe\Entities\Person;
 use Modules\Recipe\Entities\Recipe;
+use Modules\Recipe\Entities\Time;
 use Modules\Recipe\Http\Requests\CreateRecipeRequest;
 use Modules\Recipe\Http\Requests\UpdateRecipeRequest;
+use Modules\Recipe\Repositories\CategoryRepository;
 use Modules\Recipe\Repositories\RecipeRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
@@ -17,11 +22,43 @@ class RecipeController extends AdminBaseController
      */
     private $recipe;
 
-    public function __construct(RecipeRepository $recipe)
+    /**
+     * @var Category
+     */
+    private $categories;
+
+    /**
+     * @var Time
+     */
+    private $times;
+
+    /**
+     * @var Person
+     */
+    private $persons;
+
+    /**
+     * @var Complexity
+     */
+    private $complexities;
+
+    /**
+     * RecipeController constructor.
+     * @param RecipeRepository $recipe
+     * @param Category $categories
+     * @param Time $times
+     * @param Person $persons
+     * @param Complexity $complexities
+     */
+    public function __construct(RecipeRepository $recipe, Category $categories, Time $times, Person $persons, Complexity $complexities)
     {
         parent::__construct();
 
         $this->recipe = $recipe;
+        $this->categories = $categories;
+        $this->times = $times;
+        $this->persons = $persons;
+        $this->complexities = $complexities;
     }
 
     /**
@@ -43,7 +80,17 @@ class RecipeController extends AdminBaseController
      */
     public function create()
     {
-        return view('recipe::admin.recipes.create');
+        $categories = $this->categories->all();
+        $times = $this->times->all();
+        $persons = $this->persons->all();
+        $complexities = $this->complexities->all();
+
+        return view('recipe::admin.recipes.create', [
+            'categories' => $categories,
+            'times' => $times,
+            'persons' => $persons,
+            'complexities' => $complexities
+        ]);
     }
 
     /**
@@ -54,7 +101,11 @@ class RecipeController extends AdminBaseController
      */
     public function store(CreateRecipeRequest $request)
     {
-        $this->recipe->create($request->all());
+        $recipe = $this->recipe->create($request->all());
+
+        foreach ($request->category_id as $category_id) {
+            $recipe->categories()->attach($category_id);
+        }
 
         return redirect()->route('admin.recipe.recipe.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('recipe::recipes.title.recipes')]));
@@ -68,7 +119,20 @@ class RecipeController extends AdminBaseController
      */
     public function edit(Recipe $recipe)
     {
-        return view('recipe::admin.recipes.edit', compact('recipe'));
+        $categories = $this->categories->all();
+        $times = $this->times->all();
+        $persons = $this->persons->all();
+        $complexities = $this->complexities->all();
+        $relations = $recipe->categories()->get();
+
+        return view('recipe::admin.recipes.edit', [
+            'recipe' => $recipe,
+            'categories' => $categories,
+            'times' => $times,
+            'persons' => $persons,
+            'complexities' => $complexities,
+            'relations' => $relations
+        ]);
     }
 
     /**
@@ -81,6 +145,8 @@ class RecipeController extends AdminBaseController
     public function update(Recipe $recipe, UpdateRecipeRequest $request)
     {
         $this->recipe->update($recipe, $request->all());
+        $this->detach($recipe);
+        $this->attach($recipe);
 
         return redirect()->route('admin.recipe.recipe.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('recipe::recipes.title.recipes')]));
@@ -94,9 +160,24 @@ class RecipeController extends AdminBaseController
      */
     public function destroy(Recipe $recipe)
     {
+        $this->detach($recipe);
         $this->recipe->destroy($recipe);
 
         return redirect()->route('admin.recipe.recipe.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('recipe::recipes.title.recipes')]));
+    }
+
+    private function attach(Recipe $recipe)
+    {
+        foreach ($recipe->categories as $category) {
+            $recipe->categories()->attach($category->id);
+        }
+    }
+
+    private function detach(Recipe $recipe)
+    {
+        foreach ($recipe->categories as $category) {
+            $recipe->categories()->detach($category->id);
+        }
     }
 }

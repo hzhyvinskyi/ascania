@@ -29,17 +29,35 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('recipe::people.table.amount of persons') }}</th>
+                                <th>{{ trans('recipe::people.table.created at') }}</th>
+                                <th>{{ trans('recipe::people.table.updated at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($people)): ?>
-                            <?php foreach ($people as $person): ?>
+                            <?php if (isset($persons)): ?>
+                            <?php foreach ($persons as $person): ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.recipe.person.edit', [$person->id]) }}">
+                                        {{ $person->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.person.edit', [$person->id]) }}">
+                                        {{ $person->amount_of_persons }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.person.edit', [$person->id]) }}">
                                         {{ $person->created_at }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.person.edit', [$person->id]) }}">
+                                        {{ $person->updated_at }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,7 +72,10 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('recipe::people.table.amount of persons') }}</th>
+                                <th>{{ trans('recipe::people.table.created at') }}</th>
+                                <th>{{ trans('recipe::people.table.updated at') }}</th>
                                 <th>{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </tfoot>

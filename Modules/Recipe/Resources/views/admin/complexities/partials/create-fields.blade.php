@@ -1,5 +1,8 @@
 <div class="box-body">
     <p>
-        Your fields //
+        <lable>
+            <span>{{ trans('recipe::complexities.form.complexity level') }}:</span>&nbsp;&nbsp;
+            <input type="text" name="complexity_level" style="padding-left: 5px">
+        </lable>
     </p>
 </div>

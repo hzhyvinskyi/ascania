@@ -14,8 +14,12 @@ return [
         'create time' => 'Create a time',
     ],
     'table' => [
+        'amount of time' => 'Amount of time',
+        'created at' => 'Created at',
+        'updated at' => 'Updated at'
     ],
     'form' => [
+        'amount of time' => 'Amount of time',
     ],
     'messages' => [
     ],

@@ -29,7 +29,17 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('recipe::recipes.table.name') }}</th>
+                                <th>{{ trans('recipe::recipes.table.image') }}</th>
+                                <th>{{ trans('recipe::recipes.table.category') }}</th>
+                                <th>{{ trans('recipe::recipes.table.time') }}</th>
+                                <th>{{ trans('recipe::recipes.table.persons') }}</th>
+                                <th>{{ trans('recipe::recipes.table.complexity') }}</th>
+                                <th>{{ trans('recipe::recipes.table.text') }}</th>
+                                <th>{{ trans('recipe::recipes.table.intro') }}</th>
+                                <th>{{ trans('recipe::recipes.table.created at') }}</th>
+                                <th>{{ trans('recipe::recipes.table.updated at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -39,7 +49,59 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        <img src="{{ $recipe->image }}" style="max-width: 100px">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        @foreach ($recipe->categories as $category)
+                                            {{ $category->name}}<br>
+                                        @endforeach
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->times->amount_of_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->persons->amount_of_persons }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->complexity->complexity_level }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->text }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->intro }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
                                         {{ $recipe->created_at }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
+                                        {{ $recipe->updated_at }}
                                     </a>
                                 </td>
                                 <td>

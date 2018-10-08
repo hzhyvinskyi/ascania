@@ -14,8 +14,28 @@ return [
         'create recipe' => 'Create a recipe',
     ],
     'table' => [
+        'name' => 'Name',
+        'image' => 'Image',
+        'category' => 'Category',
+        'time' => 'Time',
+        'persons' => 'Persons',
+        'complexity' => 'Complexity',
+        'text' => 'Text',
+        'intro' => 'Intro',
+        'created at' => 'Created at',
+        'updated at' => 'Updated at'
     ],
     'form' => [
+        'name' => 'Name',
+        'image' => 'Image',
+        'categories' => 'Categories',
+        'time' => 'Time',
+        'persons' => 'Persons',
+        'complexity' => 'Complexity',
+        'text' => 'Text',
+        'intro' => 'Intro',
+        'created at' => 'Created at',
+        'updated at' => 'Updated at'
     ],
     'messages' => [
     ],

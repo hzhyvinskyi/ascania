@@ -1,5 +1,8 @@
 <div class="box-body">
     <p>
-        Your fields //
+        <label style="font-weight: 400">
+            <span>{{ trans('recipe::categories.form.name') }}:</span>&nbsp;&nbsp;
+            <input type="text" name="name" value="{{ $category->name }}" style="padding-left: 5px">
+        </label>
     </p>
 </div>

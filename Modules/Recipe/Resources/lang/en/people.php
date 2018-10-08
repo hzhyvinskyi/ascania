@@ -14,8 +14,12 @@ return [
         'create person' => 'Create a person',
     ],
     'table' => [
+        'amount of persons' => 'Amount of persons',
+        'created at' => 'Created at',
+        'updated at' => 'Updated at'
     ],
     'form' => [
+        'amount of persons' => 'Amount of persons'
     ],
     'messages' => [
     ],

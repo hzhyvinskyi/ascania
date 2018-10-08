@@ -56,8 +56,8 @@ class PersonController extends AdminBaseController
     {
         $this->person->create($request->all());
 
-        return redirect()->route('admin.recipe.persons.index')
-            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('recipe::persons.title.person')]));
+        return redirect()->route('admin.recipe.person.index')
+            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('recipe::people.title.people')]));
     }
 
     /**
@@ -82,8 +82,8 @@ class PersonController extends AdminBaseController
     {
         $this->person->update($person, $request->all());
 
-        return redirect()->route('admin.recipe.persons.index')
-            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('recipe::persons.title.person')]));
+        return redirect()->route('admin.recipe.person.index')
+            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('recipe::people.title.people')]));
     }
 
     /**
@@ -96,7 +96,7 @@ class PersonController extends AdminBaseController
     {
         $this->person->destroy($person);
 
-        return redirect()->route('admin.recipe.persons.index')
-            ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('recipe::persons.title.person')]));
+        return redirect()->route('admin.recipe.person.index')
+            ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('recipe::people.title.people')]));
     }
 }

@@ -14,8 +14,12 @@ return [
         'create complexity' => 'Create a complexity',
     ],
     'table' => [
+        'complexity level' => 'Complexity level',
+        'created at' => 'Created at',
+        'updated at' => 'Updated at'
     ],
     'form' => [
+        'complexity level' => 'Complexity level',
     ],
     'messages' => [
     ],

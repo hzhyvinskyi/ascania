@@ -29,7 +29,10 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('recipe::complexities.table.complexity level') }}</th>
+                                <th>{{ trans('recipe::complexities.table.created at') }}</th>
+                                <th>{{ trans('recipe::complexities.table.updated at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -39,7 +42,22 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.recipe.complexity.edit', [$complexity->id]) }}">
+                                        {{ $complexity->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.complexity.edit', [$complexity->id]) }}">
+                                        {{ $complexity->complexity_level }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.complexity.edit', [$complexity->id]) }}">
                                         {{ $complexity->created_at }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.recipe.complexity.edit', [$complexity->id]) }}">
+                                        {{ $complexity->updated_at }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,7 +72,10 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('recipe::complexities.table.complexity level') }}</th>
+                                <th>{{ trans('recipe::complexities.table.created at') }}</th>
+                                <th>{{ trans('recipe::complexities.table.updated at') }}</th>
                                 <th>{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </tfoot>
