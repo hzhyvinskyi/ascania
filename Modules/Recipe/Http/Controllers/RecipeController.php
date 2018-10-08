@@ -4,44 +4,37 @@ namespace Modules\Recipe\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Recipe\Entities\Complexity;
-use Modules\Recipe\Entities\Person;
-use Modules\Recipe\Entities\Recipe;
-use Modules\Recipe\Entities\Time;
-use Modules\Recipe\Repositories\Eloquent\EloquentRecipeRepository;
+use Modules\Recipe\Repositories\RecipeRepository;
+use Modules\Recipe\Repositories\TimeRepository;
+use Modules\Recipe\Repositories\PersonRepository;
+use Modules\Recipe\Repositories\ComplexityRepository;
 
 class RecipeController extends Controller
 {
     const POSTS_PER_PAGE = 9;
 
     /**
-     * @var Recipe
+     * @var RecipeRepository
      */
     private $recipe;
 
     /**
-     * @var Time
+     * @var TimeRepository
      */
     private $time;
 
     /**
-     * @var Person
+     * @var PersonRepository
      */
     private $person;
 
     /**
-     * @var Complexity
+     * @var ComplexityRepository
      */
     private $complexity;
 
-    /**
-     * RecipeController constructor.
-     * @param Recipe $recipe
-     * @param Time $time
-     * @param Person $person
-     * @param Complexity $complexity
-     */
-    public function __construct(Recipe $recipe, Time $time, Person $person, Complexity $complexity)
+
+    public function __construct(RecipeRepository $recipe, TimeRepository $time, PersonRepository $person, ComplexityRepository $complexity)
     {
         $this->recipe = $recipe;
         $this->time = $time;

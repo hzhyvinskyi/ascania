@@ -2,22 +2,15 @@
 
 namespace Modules\Recipe\Entities;
 
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use Translatable;
-
     /**
      * @var string
      */
     protected $table = 'recipe__categories';
 
-    /**
-     * @var array
-     */
-    public $translatedAttributes = [];
 
     /**
      * @var array

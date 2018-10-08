@@ -2,7 +2,6 @@
 
 namespace Modules\Recipe\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Recipe\Entities\Time;
 use Modules\Recipe\Http\Requests\CreateTimeRequest;

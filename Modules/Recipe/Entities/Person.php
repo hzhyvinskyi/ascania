@@ -2,22 +2,14 @@
 
 namespace Modules\Recipe\Entities;
 
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    use Translatable;
-
     /**
      * @var string
      */
     protected $table = 'recipe__persons';
-
-    /**
-     * @var array
-     */
-    public $translatedAttributes = [];
 
     /**
      * @var array

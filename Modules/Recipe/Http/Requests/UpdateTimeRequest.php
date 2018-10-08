@@ -8,7 +8,9 @@ class UpdateTimeRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'name' => 'required|integer'
+        ];
     }
 
     public function translationRules()

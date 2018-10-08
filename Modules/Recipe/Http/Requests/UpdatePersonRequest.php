@@ -8,7 +8,9 @@ class UpdatePersonRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'name' => 'required|string|min:3|max:60'
+        ];
     }
 
     public function translationRules()

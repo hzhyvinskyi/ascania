@@ -4,14 +4,13 @@ namespace Modules\Recipe\Http\Controllers\Admin;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Modules\Recipe\Entities\Category;
-use Modules\Recipe\Entities\Complexity;
-use Modules\Recipe\Entities\Person;
-use Modules\Recipe\Entities\Recipe;
-use Modules\Recipe\Entities\Time;
 use Modules\Recipe\Http\Requests\CreateRecipeRequest;
 use Modules\Recipe\Http\Requests\UpdateRecipeRequest;
 use Modules\Recipe\Repositories\RecipeRepository;
+use Modules\Recipe\Repositories\CategoryRepository;
+use Modules\Recipe\Repositories\TimeRepository;
+use Modules\Recipe\Repositories\PersonRepository;
+use Modules\Recipe\Repositories\ComplexityRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class RecipeController extends AdminBaseController
@@ -22,35 +21,34 @@ class RecipeController extends AdminBaseController
     private $recipe;
 
     /**
-     * @var Category
+     * @var CategoryRepository
      */
     private $categories;
 
     /**
-     * @var Time
+     * @var TimeRepository
      */
     private $times;
 
     /**
-     * @var Person
+     * @var PersonRepository
      */
     private $persons;
 
     /**
-     * @var Complexity
+     * @var ComplexityRepository
      */
     private $complexities;
 
     /**
      * RecipeController constructor.
-     *
      * @param RecipeRepository $recipe
-     * @param Category $categories
-     * @param Time $times
-     * @param Person $persons
-     * @param Complexity $complexities
+     * @param CategoryRepository $categories
+     * @param TimeRepository $times
+     * @param PersonRepository $persons
+     * @param ComplexityRepository $complexities
      */
-    public function __construct(RecipeRepository $recipe, Category $categories, Time $times, Person $persons, Complexity $complexities)
+    public function __construct(RecipeRepository $recipe, CategoryRepository $categories, TimeRepository $times, PersonRepository $persons, ComplexityRepository $complexities)
     {
         parent::__construct();
 
