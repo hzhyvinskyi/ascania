@@ -9,7 +9,7 @@ class CreatePersonRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:60'
+            'amount_of_persons' => 'bail|required|string|min:3|max:60'
         ];
     }
 

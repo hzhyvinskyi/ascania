@@ -9,6 +9,11 @@ use Modules\Recipe\Http\Requests\UpdateCategoryRequest;
 use Modules\Recipe\Repositories\CategoryRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
+/**
+ * Class CategoryController
+ *
+ * @package Modules\Recipe\Http\Controllers\Admin
+ */
 class CategoryController extends AdminBaseController
 {
     /**
@@ -16,6 +21,11 @@ class CategoryController extends AdminBaseController
      */
     private $category;
 
+    /**
+     * CategoryController constructor.
+     *
+     * @param CategoryRepository $category
+     */
     public function __construct(CategoryRepository $category)
     {
         parent::__construct();

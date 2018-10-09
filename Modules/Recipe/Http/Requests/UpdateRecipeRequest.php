@@ -9,7 +9,7 @@ class UpdateRecipeRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3',
+            'name' => 'bail|required|string|min:3',
             'image' => 'nullable|image',
             'category_id' => 'required',
             'times_id' => 'bail|required|integer',

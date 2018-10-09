@@ -27,3 +27,7 @@
   color: #F00;
   font-size: 12px;
 }
+
+.table-responsive tbody {
+  word-break: break-word;
+}

@@ -9,6 +9,11 @@ use Modules\Recipe\Http\Requests\UpdateTimeRequest;
 use Modules\Recipe\Repositories\TimeRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
+/**
+ * Class TimeController
+ *
+ * @package Modules\Recipe\Http\Controllers\Admin
+ */
 class TimeController extends AdminBaseController
 {
     /**
@@ -16,6 +21,11 @@ class TimeController extends AdminBaseController
      */
     private $time;
 
+    /**
+     * TimeController constructor.
+     *
+     * @param TimeRepository $time
+     */
     public function __construct(TimeRepository $time)
     {
         parent::__construct();

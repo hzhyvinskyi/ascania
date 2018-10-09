@@ -9,7 +9,7 @@ class CreateTimeRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|integer'
+            'amount_of_time' => 'bail|required|integer|max:300'
         ];
     }
 

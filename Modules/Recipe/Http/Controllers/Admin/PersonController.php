@@ -9,6 +9,11 @@ use Modules\Recipe\Http\Requests\UpdatePersonRequest;
 use Modules\Recipe\Repositories\PersonRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
+/**
+ * Class PersonController
+ *
+ * @package Modules\Recipe\Http\Controllers\Admin
+ */
 class PersonController extends AdminBaseController
 {
     /**
@@ -16,6 +21,11 @@ class PersonController extends AdminBaseController
      */
     private $person;
 
+    /**
+     * PersonController constructor.
+     *
+     * @param PersonRepository $person
+     */
     public function __construct(PersonRepository $person)
     {
         parent::__construct();

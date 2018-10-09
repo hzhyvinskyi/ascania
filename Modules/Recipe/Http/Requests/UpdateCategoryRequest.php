@@ -9,7 +9,7 @@ class UpdateCategoryRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:60'
+            'name' => 'bail|required|string|min:3|max:60'
         ];
     }
 

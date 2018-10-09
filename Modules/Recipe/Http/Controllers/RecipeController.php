@@ -9,8 +9,16 @@ use Modules\Recipe\Repositories\TimeRepository;
 use Modules\Recipe\Repositories\PersonRepository;
 use Modules\Recipe\Repositories\ComplexityRepository;
 
+/**
+ * Class RecipeController
+ *
+ * @package Modules\Recipe\Http\Controllers
+ */
 class RecipeController extends Controller
 {
+    /**
+     * @const Number of posts on the one page
+     */
     const POSTS_PER_PAGE = 9;
 
     /**
@@ -33,7 +41,14 @@ class RecipeController extends Controller
      */
     private $complexity;
 
-
+    /**
+     * RecipeController constructor.
+     *
+     * @param RecipeRepository $recipe
+     * @param TimeRepository $time
+     * @param PersonRepository $person
+     * @param ComplexityRepository $complexity
+     */
     public function __construct(RecipeRepository $recipe, TimeRepository $time, PersonRepository $person, ComplexityRepository $complexity)
     {
         $this->recipe = $recipe;
@@ -44,14 +59,15 @@ class RecipeController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @return Response
      */
     public function index()
     {
         $recipes = $this->recipe->paginate(self::POSTS_PER_PAGE);
-        $times = $this->time->all();
-        $persons = $this->person->all();
-        $complexities = $this->complexity->all();
+        $times = $this->time->all()->sort();
+        $persons = $this->person->all()->sort();
+        $complexities = $this->complexity->all()->sort();
 
         return view('recipe::pages.index', [
             'recipes' => $recipes,
@@ -64,6 +80,7 @@ class RecipeController extends Controller
 
     /**
      * Show the specified resource.
+     *
      * @param $id
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
@@ -71,7 +88,9 @@ class RecipeController extends Controller
     {
         $recipe = $this->recipe->find($id);
         $recipes = $this->recipe->all();
-        $lastRecipes = $this->recipe->orderBy('id', 'desc')->limit(3)->get();
+        $lastRecipes = $this->recipe->all()->sortByDesc('id')->filter(function ($recipe, $key) {
+            return $key < 3;
+        });
 
         return view('recipe::pages.show', [
             'recipe' => $recipe,

@@ -9,7 +9,7 @@ class UpdateComplexityRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:60'
+            'complexity_level' => 'bail|required|string|min:3|max:60'
         ];
     }
 

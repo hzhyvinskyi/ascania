@@ -62,13 +62,13 @@
     <p>
         <label style="font-weight: 400">
             <span>{{ trans('recipe::recipes.form.text') }}:</span>&nbsp;&nbsp;
-            <input type="text" name="text" value="{{ old('text') ?: $recipe->text }}" style="padding-left: 5px">
+            <textarea name="text" cols="50" rows="5">{{ old('text') ?: $recipe->text }}</textarea>
         </label>
         <span class="error-message">{{ $errors->first('text') }}</span>
     <p>
         <label style="font-weight: 400">
             <span>{{ trans('recipe::recipes.form.intro') }}:</span>&nbsp;&nbsp;
-            <input type="text" name="intro" value="{{ old('intro') ?: $recipe->intro }}" style="padding-left: 5px">
+            <textarea name="intro" cols="50" rows="5">{{ old('intro') ?: $recipe->intro }}</textarea>
         </label>
         <span class="error-message">{{ $errors->first('intro') }}</span>
     <p>

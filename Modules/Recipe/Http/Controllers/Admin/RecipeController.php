@@ -4,6 +4,7 @@ namespace Modules\Recipe\Http\Controllers\Admin;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Modules\Recipe\Entities\Recipe;
 use Modules\Recipe\Http\Requests\CreateRecipeRequest;
 use Modules\Recipe\Http\Requests\UpdateRecipeRequest;
 use Modules\Recipe\Repositories\RecipeRepository;
@@ -13,6 +14,11 @@ use Modules\Recipe\Repositories\PersonRepository;
 use Modules\Recipe\Repositories\ComplexityRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
+/**
+ * Class RecipeController
+ *
+ * @package Modules\Recipe\Http\Controllers\Admin
+ */
 class RecipeController extends AdminBaseController
 {
     /**
@@ -23,40 +29,41 @@ class RecipeController extends AdminBaseController
     /**
      * @var CategoryRepository
      */
-    private $categories;
+    private $category;
 
     /**
      * @var TimeRepository
      */
-    private $times;
+    private $time;
 
     /**
      * @var PersonRepository
      */
-    private $persons;
+    private $person;
 
     /**
      * @var ComplexityRepository
      */
-    private $complexities;
+    private $complexity;
 
     /**
      * RecipeController constructor.
+     *
      * @param RecipeRepository $recipe
-     * @param CategoryRepository $categories
-     * @param TimeRepository $times
-     * @param PersonRepository $persons
-     * @param ComplexityRepository $complexities
+     * @param CategoryRepository $category
+     * @param TimeRepository $time
+     * @param PersonRepository $person
+     * @param ComplexityRepository $complexity
      */
-    public function __construct(RecipeRepository $recipe, CategoryRepository $categories, TimeRepository $times, PersonRepository $persons, ComplexityRepository $complexities)
+    public function __construct(RecipeRepository $recipe, CategoryRepository $category, TimeRepository $time, PersonRepository $person, ComplexityRepository $complexity)
     {
         parent::__construct();
 
         $this->recipe = $recipe;
-        $this->categories = $categories;
-        $this->times = $times;
-        $this->persons = $persons;
-        $this->complexities = $complexities;
+        $this->category = $category;
+        $this->time = $time;
+        $this->person = $person;
+        $this->complexity = $complexity;
     }
 
     /**
@@ -78,10 +85,10 @@ class RecipeController extends AdminBaseController
      */
     public function create()
     {
-        $categories = $this->categories->all();
-        $times = $this->times->all();
-        $persons = $this->persons->all();
-        $complexities = $this->complexities->all();
+        $categories = $this->category->all()->sort();
+        $times = $this->time->all()->sort();
+        $persons = $this->person->all()->sort();
+        $complexities = $this->complexity->all()->sort();
 
         return view('recipe::admin.recipes.create', [
             'categories' => $categories,
@@ -125,10 +132,10 @@ class RecipeController extends AdminBaseController
      */
     public function edit(Recipe $recipe)
     {
-        $categories = $this->categories->all();
-        $times = $this->times->all();
-        $persons = $this->persons->all();
-        $complexities = $this->complexities->all();
+        $categories = $this->category->all();
+        $times = $this->time->all();
+        $persons = $this->person->all();
+        $complexities = $this->complexity->all();
         $relations = $recipe->categories()->get();
 
         return view('recipe::admin.recipes.edit', [
@@ -196,6 +203,7 @@ class RecipeController extends AdminBaseController
      * Saves related data into the pivot table
      *
      * @param Recipe $recipe
+     * @param $request
      */
     private function attach(Recipe $recipe, $request)
     {

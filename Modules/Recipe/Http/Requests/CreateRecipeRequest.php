@@ -12,9 +12,9 @@ class CreateRecipeRequest extends BaseFormRequest
             'name' => 'bail|required|unique:recipe__recipes|min:3',
             'image' => 'bail|required|image',
             'category_id' => 'required',
-            'times_id' => 'required|integer',
-            'persons_id' => 'required|integer',
-            'complexity_id' => 'required|integer',
+            'times_id' => 'bail|required|integer',
+            'persons_id' => 'bail|required|integer',
+            'complexity_id' => 'bail|required|integer',
             'text' => 'nullable|string|min:20',
             'intro' => 'nullable|string|min:10'
         ];

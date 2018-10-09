@@ -9,6 +9,11 @@ use Modules\Recipe\Http\Requests\UpdateComplexityRequest;
 use Modules\Recipe\Repositories\ComplexityRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
+/**
+ * Class ComplexityController
+ *
+ * @package Modules\Recipe\Http\Controllers\Admin
+ */
 class ComplexityController extends AdminBaseController
 {
     /**
@@ -16,6 +21,11 @@ class ComplexityController extends AdminBaseController
      */
     private $complexity;
 
+    /**
+     * ComplexityController constructor.
+     *
+     * @param ComplexityRepository $complexity
+     */
     public function __construct(ComplexityRepository $complexity)
     {
         parent::__construct();
